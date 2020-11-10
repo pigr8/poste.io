@@ -6,13 +6,15 @@ ENV ROUNDCUBE_VERSION=1.4.9
 
 RUN set -ex; \
 	curl -o roundcube-${ROUNDCUBE_VERSION}.tar.gz -fSL "https://github.com/roundcube/roundcubemail/releases/download/${ROUNDCUBE_VERSION}/roundcubemail-${ROUNDCUBE_VERSION}-complete.tar.gz"; \
-	mv /opt/www/webmail/config/config.inc.php /tmp/config.inc.php; \
+	mv /opt/www/webmail/config/config.inc.php /tmp/roundcube.config.inc.php; \
+	mv /opt/www/webmail/plugins/enigma/config.inc.php /tmp/enigma.config.inc.php; \
 	rm -R /opt/www/webmail; \
 	tar -xzf roundcube-${ROUNDCUBE_VERSION}.tar.gz -C /opt/www/; \
 	mv /opt/www/roundcubemail-${ROUNDCUBE_VERSION} /opt/www/webmail; \
 	rm -R /opt/www/webmail/installer; \
 	rm /opt/www/webmail/config/config.inc.php*; \
-	mv /tmp/config.inc.php /opt/www/webmail/config/; \
+	mv /tmp/roundcube.config.inc.php /opt/www/webmail/config/config.inc.php; \
+	mv /tmp/enigma.config.inc.php /opt/www/webmail/plugins/enigma/config.inc.php; \
 	rm roundcube-${ROUNDCUBE_VERSION}.tar.gz; \
 	mkdir /data/roundcube-plugins
 
