@@ -1,4 +1,4 @@
-ARG UPSTREAM=2.2.23
+ARG UPSTREAM=2.2.25
 FROM analogic/poste.io:$UPSTREAM
 
 # Overwriting default Roundcube with latest official version
